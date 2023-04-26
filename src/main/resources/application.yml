@@ -6,6 +6,7 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 disableSymbols: "MYCOIN"
+whitelistedExpression: "hasIpAddress(\"127.0.0.1\") or hasIpAddress(\"::1\")"
 input:
   headers: "timestamp,symbol,price"
   sourceDir: "src/main/resources/prices/"
