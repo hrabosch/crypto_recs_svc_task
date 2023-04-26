@@ -52,3 +52,14 @@ Spring Batch job is triggered during application start up, but can be restarted 
 If you are running one or multiple service instances in containers, using **Docker Volume** can help you to have one location for source CSV files.
 Run container with mounted volume and set it correctly as ``input.sourceDir`` property.
 
+#Notes
+## Restrict access on svc by IPs
+In case of needs to restrict access to service, most suitable solution would be using ALB due to single source of truth and often best offered available solution (from cloud providers).
+
+Another option would be modified iptables on Docker container. Problem will be maintenance with multiple instances/containers.
+
+Option on service itself - If there is requirement to solve it on service level (which is not ideal at all), there are some ways 
+how to do that by libraries or only with Spring filters -> Basic example of possible 
+solution is in _TSK-00-Filter_ip_based_ branch of this repository. This is **not recommended** solution due to bad maintainability, etc. 
+
+
