@@ -52,7 +52,7 @@ Spring Batch job is triggered during application start up, but can be restarted 
 If you are running one or multiple service instances in containers, using **Docker Volume** can help you to have one location for source CSV files.
 Run container with mounted volume and set it correctly as ``input.sourceDir`` property.
 
-#Notes
+# Notes
 ## Restrict access on svc by IPs
 In case of needs to restrict access to service, most suitable solution would be using ALB due to single source of truth and often best offered available solution (from cloud providers).
 
@@ -61,5 +61,23 @@ Another option would be modified iptables on Docker container. Problem will be m
 Option on service itself - If there is requirement to solve it on service level (which is not ideal at all), there are some ways 
 how to do that by libraries or only with Spring filters -> Basic example of possible 
 solution is in _TSK-00-Filter_ip_based_ branch of this repository. This is **not recommended** solution due to bad maintainability, etc. 
+
+## Spring MVC - reason
+Spring MVC is used as a blocking solution due to Spring Batch.
+
+In case of separating CSV files import or removing batching, we can use Spring Webflux [docs](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) with reactive approach.
+We would be able to R2DBC Repository and keep it completely reactive. 
+Due to finite Spring Batch, it is not possible to use R2DBC.
+
+### Is Spring Batch Required?
+Due to missing requirements/clarification I would suggest to consider different approaches based on questions like:
+
+_Are there often changes on source data?_
+
+_Expectations of dataset sizes?_
+
+_Do we want to be prepared for different data sources?_
+
+_etc..._
 
 
