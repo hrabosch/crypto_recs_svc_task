@@ -1,0 +1,12 @@
+server.port: 8080
+spring:
+  main.banner-mode: off
+  batch.job.enabled: ${PROCESS_CSV_JOB_ENABLED:true}
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+disableSymbols: "MYCOIN"
+input:
+  headers: "timestamp,symbol,price"
+  sourceDir: "src/main/resources/prices/"
+  pattern: "*_values.csv"
