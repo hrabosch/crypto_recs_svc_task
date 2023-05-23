@@ -120,7 +120,7 @@ class CryptoRecsServiceTest {
 
         assertEquals(1, result.size());
         CryptoPriceStatistics stats = result.get(0);
-        assertTrue(stats.getMaxPrice() >stats.getMinPrice());
+        assertTrue(stats.getMaxPrice() > stats.getMinPrice());
         assertEquals(SYMBOLS[0], stats.getSymbol());
     }
 
@@ -163,7 +163,7 @@ class CryptoRecsServiceTest {
                 .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE)));
 
         when(cryptoPriceRepository.findFirstBySymbolOrderByPriceAsc(eq(SYMBOLS[1])))
-                .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE / 3)));
+                .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE / 2)));
         when(cryptoPriceRepository.findFirstBySymbolOrderByPriceDesc(eq(SYMBOLS[1])))
                 .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE * 2)));
 
@@ -186,7 +186,7 @@ class CryptoRecsServiceTest {
                 .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE)));
 
         when(cryptoPriceRepository.findFirstBySymbolOrderByPriceAsc(eq(SYMBOLS[1])))
-                .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE / 3)));
+                .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE / 2)));
         when(cryptoPriceRepository.findFirstBySymbolOrderByPriceDesc(eq(SYMBOLS[1])))
                 .thenReturn(Optional.of(new CryptoPrice(now, SYMBOLS[0], PRICE * 2)));
 
